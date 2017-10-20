@@ -5,6 +5,9 @@ import com.realdolmen.repository.storage.api.StorageResult;
 public class SessionImpl extends DevlabsEntityImpl implements Session {
     private String name;
 
+    public SessionImpl() {
+    }
+
     public SessionImpl(String name) {
         this.name = name;
     }

@@ -10,6 +10,9 @@ public class TopicImpl extends DevlabsEntityImpl implements Topic {
     private Set<DevLabsUser> subscribers;
     private Session session;
 
+    public TopicImpl() {
+    }
+
     public TopicImpl(String title, String description, Session session) {
         this.title = title;
         this.description = description;
