@@ -2,12 +2,12 @@ package com.realdolmen.model;
 
 import com.realdolmen.repository.storage.api.StorageResult;
 
-import java.util.List;
+import java.util.Set;
 
 public class TopicImpl extends DevlabsEntityImpl implements Topic {
     private String title, description;
-    private List<DevLabsTag> tags;
-    private List<DevLabsUser> subscribers;
+    private Set<DevLabsTag> tags;
+    private Set<DevLabsUser> subscribers;
     private Session session;
 
     public TopicImpl(String title, String description, Session session) {
@@ -16,8 +16,8 @@ public class TopicImpl extends DevlabsEntityImpl implements Topic {
         this.session = session;
     }
 
-    public TopicImpl(String title, String description, List<DevLabsTag> tags,
-                     List<DevLabsUser> subscribers, Session session) {
+    public TopicImpl(String title, String description, Set<DevLabsTag> tags,
+                     Set<DevLabsUser> subscribers, Session session) {
         this.title = title;
         this.description = description;
         this.tags = tags;
@@ -46,12 +46,12 @@ public class TopicImpl extends DevlabsEntityImpl implements Topic {
     }
 
     @Override
-    public List<DevLabsTag> getTags() {
+    public Set<DevLabsTag> getTags() {
         return tags;
     }
 
     @Override
-    public List<DevLabsUser> getSubscribers() {
+    public Set<DevLabsUser> getSubscribers() {
         return subscribers;
     }
 

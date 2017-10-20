@@ -1,6 +1,6 @@
 package com.realdolmen.model;
 
-import java.util.List;
+import java.util.Set;
 
 public interface Topic extends DevlabsEntity {
 
@@ -8,9 +8,9 @@ public interface Topic extends DevlabsEntity {
 
     String getDescription();
 
-    List<DevLabsTag> getTags();
+    Set<DevLabsTag> getTags();
 
-    List<DevLabsUser> getSubscribers();
+    Set<DevLabsUser> getSubscribers();
 
     Session getSession();
 
