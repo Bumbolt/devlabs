@@ -24,6 +24,7 @@ public class SessionResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public void createSession(SessionImpl session){
+        session.save();
         logger.log("Create topic " + session.getName());
     }
 
@@ -31,5 +32,12 @@ public class SessionResource {
     @Path("{id}")
     public Session getSession(@PathParam("id") String id){
         return new SessionImpl(id);
+    }
+
+    @DELETE
+    @Path("{id}")
+    public void deleteSession(String id){
+        // storage.find(..)
+        // session.delete();
     }
 }

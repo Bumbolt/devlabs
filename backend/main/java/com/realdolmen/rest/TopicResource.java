@@ -47,6 +47,7 @@ public class TopicResource {
             @PathParam("id") String id,
             DevLabsTagImpl tag
     ){
+        tag.save();
         StorageResult storageResult = StorageResult.ERROR;//= storage.find(null);
         if(storageResult.equals(StorageResult.ERROR)){
             return Response.serverError().build();
