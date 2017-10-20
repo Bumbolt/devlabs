@@ -1,0 +1,15 @@
+.search-tile {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background: #cecfd1;
+  border-radius: 5px;
+}
+
+h4 {
+  text-align: right;
+  color: #1d7e20;
+}
+
+h4 > small {
+  color: white;
+}

@@ -1,0 +1,10 @@
+
+<h3>Welcome to DevLabs</h3>
+<div *ngIf="authenticated">
+<button class="btn btn-primary" [routerLink]="['topics']">Find a topic</button>
+</div>
+<div *ngIf="!authenticated">
+  <p>Please sign in to continue</p>
+  <button class="btn btn-primary login-btn" (click)="login()">Sign in</button>
+</div>
+

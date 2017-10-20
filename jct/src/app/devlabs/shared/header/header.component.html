@@ -1,0 +1,15 @@
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+  <a class="navbar-brand" [routerLink]="['/devlabs', 'topics']">DevLabs</a>
+
+
+  <div *ngIf="authenticated">
+    <small>Welcome</small>
+    <span>
+          {{ user?.displayName }}
+        </span>
+  </div>
+  <span class="nav-link" *ngIf="!authenticated" (click)="login()">Sign in</span>
+  <span class="nav-link" *ngIf="authenticated" (click)="logout()">Sign out</span>
+
+
+</nav>
