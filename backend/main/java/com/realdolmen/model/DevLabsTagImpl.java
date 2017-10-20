@@ -5,6 +5,9 @@ import com.realdolmen.repository.storage.api.StorageResult;
 public class DevLabsTagImpl extends DevlabsEntityImpl implements DevLabsTag {
     private String name;
 
+    public DevLabsTagImpl() {
+    }
+
     public DevLabsTagImpl(String name) {
         this.name = name;
     }
