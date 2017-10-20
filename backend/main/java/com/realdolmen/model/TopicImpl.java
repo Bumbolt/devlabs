@@ -5,10 +5,13 @@ import com.realdolmen.repository.storage.api.StorageResult;
 import java.util.List;
 
 public class TopicImpl extends DevlabsEntityImpl implements Topic {
-    private String title, description;
-    private List<DevLabsTag> tags;
-    private List<DevLabsUser> subscribers;
-    private Session session;
+        private String title, description;
+        private List<DevLabsTag> tags;
+        private List<DevLabsUser> subscribers;
+        private Session session;
+
+    public TopicImpl() {
+    }
 
     public TopicImpl(String title, String description, Session session) {
         this.title = title;
