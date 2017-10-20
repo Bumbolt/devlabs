@@ -1,8 +1,6 @@
 package com.realdolmen.model;
 
-public interface Session {
-
-    Long getId();
+public interface Session extends DevlabsEntity {
 
     String getName();
 
