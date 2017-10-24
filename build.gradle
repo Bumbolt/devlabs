@@ -1,2 +1,2 @@
-version: 1.0
-description: DevLabs application
+version = 1.0
+description = 'DevLabs application'
