@@ -41,4 +41,7 @@
 /frontend/.DS_Store
 /frontend/Thumbs.db
 
+# Gradle
+.gradle
+
 /backend/target
