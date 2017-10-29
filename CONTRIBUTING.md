@@ -9,7 +9,16 @@
 
 ## Getting access
 
+### Collaborator access
+
 To get access visit the [DevLabs slack channel](r-devlabs.slack.com) in the #devlabs-application channel. You can ping Reinout Claeys there to get access. 
 
 Access is restricted to owners of a @realdolmen.com e-mail address. 
+ 
+### Pull requests
+
+Pull requests will be reviewed and accepted. This is way of working is handy to get an extra check if you feel unsure about changing the master (develop) branch. 
+
+
+_All commits will be reviewed via pull request to the release branch_
  
