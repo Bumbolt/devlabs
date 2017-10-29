@@ -14,7 +14,7 @@ import java.util.UUID;
 
 public class FileStorage implements Storage {
 
-    private static final String STORAGE = "storage/";
+    private static final String STORAGE = "./storage/";
 
     private LoggerImpl logger;
 
@@ -28,6 +28,7 @@ public class FileStorage implements Storage {
         try {
             Path path = Paths.get(STORAGE + entity.getId() + ".devlabs");
             Files.deleteIfExists(path);
+            Files.createDirectories(path.getParent());
             Files.createFile(path);
 
             FileOutputStream fos = new FileOutputStream(path.toString());
@@ -35,6 +36,7 @@ public class FileStorage implements Storage {
             oos.writeObject(entity);
             return StorageResult.OK;
         } catch (IOException e) {
+            e.printStackTrace();
             logger.log("Error while saving entity with id=" + entity.getId(), e);
             return StorageResult.ERROR;
         }
