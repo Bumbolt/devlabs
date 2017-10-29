@@ -9,7 +9,7 @@ public class Application {
 
         try {
             // Creates a server and listens on the address below.
-            // Scans classpath for JAX-RS resources
+            // Scans classpath for  JAX-RS resources
             server = SimpleServerFactory.create("http://localhost:5555");
             System.out.println("Press any key to stop the service...");
             System.in.read();
