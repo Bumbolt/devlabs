@@ -14,7 +14,7 @@ import java.util.UUID;
 
 public class FileStorage implements Storage {
 
-    private static final String STORAGE = "./storage/";
+    private static String STORAGE = "./storage/";
 
     private LoggerImpl logger;
 
@@ -65,5 +65,9 @@ public class FileStorage implements Storage {
             logger.log("Error while attempting to find entity with id=" + id);
         }
         return null;
+    }
+
+    void setStoragePath(String storagePath) {
+        STORAGE = storagePath;
     }
 }

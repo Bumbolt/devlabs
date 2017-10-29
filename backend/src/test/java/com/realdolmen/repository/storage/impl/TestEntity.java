@@ -8,6 +8,7 @@ import java.util.UUID;
 public class TestEntity implements DevlabsEntity {
 
     private UUID id;
+    private String testField;
 
     TestEntity() {
         id = UUID.randomUUID();
@@ -26,5 +27,13 @@ public class TestEntity implements DevlabsEntity {
     @Override
     public StorageResult delete() {
         return null;
+    }
+
+    public void setTestField(String testField) {
+        this.testField = testField;
+    }
+
+    public String getTestField() {
+        return testField;
     }
 }
