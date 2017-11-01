@@ -20,7 +20,7 @@ commands below.
 
 ## Running unit tests
 
-`gralde test`
+`gradle test`
 
 
 ## Running the application
