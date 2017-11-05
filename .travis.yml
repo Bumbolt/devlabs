@@ -4,6 +4,10 @@ jdk:
 script:
 - cd backend/
 - "./gradlew clean build"
+- "./gradlew jacocoTestReport"
+after_success:
+  - cd backend/
+  - bash <(curl -s https://codecov.io/bash)
 notifications:
   slack:
     secure: BAF5FIVzqhwr5T3ij5XAOCQibEuYFQk72fal2F759YDVZAel225UjTfBw6wm4opAKLCmey1P8cIJlmHd3OEG6at3Ctq6iZbSTaOA+6hQBZvijPgTaoTFi69w0kIq7k5PJSx+UuW80hn/LnIOlCBRNmH7Au+kCOUrrWlaLJ6fEY9pFFqLAEN8GMueswaqFe4BSehWBdA8v3ThOf++zlGe906LSN/gAv/pafLYa/e+Fjqo+yVUscATJZPboMc/byBOuQoPH3jh38ldBF+G9/zjTXYn7lvGTz272S0TZZHhMwHnWzBZnZYzZmO3xdBa8f0mZio5BEofoccwClVzQTb1gMNT3rCMFTfcIJVKFpxSfmithwA0zvxcAhiMYBj+XvfaQosUwMl/rfg6+S/qtZ3+Ma6V6r5mXplYyjeWdn10JfgEXJY1iXFbyf3AXeRSgewFZXgyCPeUwrMXIs8hiMoc0XY0iR369VFFidu8SWsJlrFKMLy3SMwV+MbWWC8rLsmWmdyjLdUybgyGAunvGsbQKssrHZm7G22Vzj/KukFqInCvqBOYZr8jSbvPYaTiD8OxCx2eAZZ4Y5pGpKBvyS83anrxN5Y2BxMy0MJjFVr37OVtDfDWmtjNOtUEU1Y99eSXKdsgh7sT77OSKKYALmxEXpGZeIM6lfmF/wvZk2BOiuo=
