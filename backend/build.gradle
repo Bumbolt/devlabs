@@ -13,10 +13,14 @@ repositories {
 }
 
 dependencies {
-    compile group: 'javax.ws.rs', name: 'javax.ws.rs-api', version: '2.0'
-    compile group: 'com.sun.jersey.contribs', name: 'jersey-simple-server', version: '1.19.4'
+    compile group: 'javax.ws.rs', name: 'javax.ws.rs-api', version: '2.1'
+    compile group: 'org.glassfish.jersey.containers', name: 'jersey-container-grizzly2-http', version: '2.26'
+    compile group: 'org.glassfish.jersey.inject', name: 'jersey-hk2', version: '2.26'
+    compile group: 'org.glassfish.jersey.media', name: 'jersey-media-json-jackson', version: '2.26'
 
     testCompile group: 'junit', name: 'junit', version: '4.+'
+    testCompile group: 'org.mockito', name: 'mockito-all', version: '2.0.2-beta'
+    testCompile group: 'org.glassfish.jersey.test-framework.providers', name: 'jersey-test-framework-provider-grizzly2', version: '2.26'
 }
 
 run {

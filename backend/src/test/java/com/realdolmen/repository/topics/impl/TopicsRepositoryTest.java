@@ -2,7 +2,6 @@ package com.realdolmen.repository.topics.impl;
 
 import com.realdolmen.model.Topic;
 import com.realdolmen.model.TopicImpl;
-import com.realdolmen.repository.TestEntity;
 import com.realdolmen.repository.storage.impl.FileStorage;
 import org.junit.After;
 import org.junit.Test;

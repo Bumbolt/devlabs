@@ -1,26 +1,27 @@
 package com.realdolmen;
 
-import com.sun.jersey.simple.container.SimpleServerFactory;
+import com.realdolmen.rest.ApplicationResource;
+import org.glassfish.grizzly.http.server.HttpServer;
+import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
+import org.glassfish.jersey.server.ResourceConfig;
+
+import java.net.URI;
 
 public class Application {
 
-    public static void main( String[] args ) throws Exception {
-        java.io.Closeable server = null;
+    private static final String BASE_URI = "http://localhost:5555";
 
-        try {
-            // Creates a server and listens on the address below.
-            // Scans classpath for  JAX-RS resources
-            server = SimpleServerFactory.create("http://localhost:5555");
-            System.out.println("Press any key to stop the service...");
-            System.in.read();
-        } finally {
-            try {
-                if (server != null) {
-                    server.close();
-                }
-            } finally {
-                ;
-            }
-        }
+    public static void main(String[] args) throws Exception {
+        startServer();
+        System.out.println("Server started at " + BASE_URI);
+        System.out.println("Hit any key to stop the server...");
+        System.in.read();
     }
+
+    private static HttpServer startServer() {
+        final ResourceConfig rc = new ResourceConfig().packages((ApplicationResource.class).getPackage().getName());
+        return GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), rc);
+    }
+
+
 }

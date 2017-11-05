@@ -1,53 +1,55 @@
 package com.realdolmen.rest;
 
 import com.realdolmen.model.DevLabsTagImpl;
-import com.realdolmen.model.SessionImpl;
 import com.realdolmen.model.Topic;
 import com.realdolmen.model.TopicImpl;
-import com.realdolmen.repository.storage.api.Storage;
 import com.realdolmen.repository.storage.api.StorageResult;
+import com.realdolmen.repository.storage.impl.FileStorage;
+import com.realdolmen.repository.topics.impl.TopicRepository;
 import com.realdolmen.util.Logger;
 import com.realdolmen.util.LoggerImpl;
 
 import javax.ws.rs.*;
+import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.ArrayList;
 import java.util.List;
 
-@Path("/topic")
+@Path("/topics")
 @Produces(MediaType.APPLICATION_JSON)
 public class TopicResource {
 
-    Logger logger = new LoggerImpl();
-    Storage storage;
+    private Logger logger;
+    private TopicRepository repository;
+
+    public TopicResource() {
+        logger = new LoggerImpl();
+        this.repository = TopicRepository.create(FileStorage.create("./storage/"));
+    }
 
     @GET
-    public List<Topic> getTopics() {
-        return new ArrayList<>();
+    public Response getTopics() {
+        return Response.ok().entity(new GenericEntity<List<Topic>>(repository.findAll()) {}).build();
     }
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public void createTopic(TopicImpl topic){
+    public void createTopic(TopicImpl topic) {
         logger.log("Create topic " + topic.getTitle());
     }
 
     @GET
     @Path("{id}")
-    public Topic getTopic(@PathParam("id") String id){
+    public Topic getTopic(@PathParam("id") String id) {
         return TopicImpl.create();
     }
 
     @POST
     @Path("{id}")
-    public Response addTag(
-            @PathParam("id") String id,
-            DevLabsTagImpl tag
-    ){
+    public Response addTag(@PathParam("id") String id, DevLabsTagImpl tag) {
         tag.save();
         StorageResult storageResult = StorageResult.ERROR;//= storage.find(null);
-        if(storageResult.equals(StorageResult.ERROR)){
+        if (storageResult.equals(StorageResult.ERROR)) {
             return Response.serverError().build();
         }
         logger.log("Create tag " + tag.getName());
