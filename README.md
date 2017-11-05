@@ -1,4 +1,4 @@
-# Devlabs        [![Build Status](https://travis-ci.org/bumbolt/devlabs.svg?branch=master)](https://travis-ci.org/bumbolt/devlabs)
+# Devlabs        [![Build Status](https://travis-ci.org/bumbolt/devlabs.svg?branch=master)](https://travis-ci.org/bumbolt/devlabs) [![codecov](https://codecov.io/gh/bumbolt/devlabs/branch/master/graph/badge.svg)](https://codecov.io/gh/bumbolt/devlabs)
 
 ## Some links
 
