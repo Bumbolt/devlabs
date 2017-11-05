@@ -3,6 +3,7 @@ package com.realdolmen.repository.storage.impl;
 import com.realdolmen.model.DevlabsEntity;
 import com.realdolmen.repository.storage.api.Storage;
 import com.realdolmen.repository.storage.api.StorageResult;
+import com.realdolmen.util.Logger;
 import com.realdolmen.util.LoggerImpl;
 
 import java.io.*;
@@ -10,16 +11,25 @@ import java.nio.file.Files;
 import java.nio.file.LinkOption;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class FileStorage implements Storage {
 
-    private static String STORAGE = "./storage/";
+    private static String STORAGE;
 
     private LoggerImpl logger;
 
-    FileStorage() {
-        this.logger = new LoggerImpl();
+    private FileStorage(String path) {
+        STORAGE = path;
+        logger = new LoggerImpl();
+    }
+
+    public static FileStorage create(String path) {
+        return new FileStorage(path);
     }
 
     @Override
@@ -67,7 +77,50 @@ public class FileStorage implements Storage {
         return null;
     }
 
-    void setStoragePath(String storagePath) {
-        STORAGE = storagePath;
+    @Override
+    public <T extends DevlabsEntity> List<T> findAll(Class<T> clazz) {
+        try {
+            return Files.walk(Paths.get(STORAGE))
+                    .filter(Files::isRegularFile)
+                    .map(Path::toString)
+                    .map(name -> {
+                        try {
+                            return new FileInputStream(name);
+                        } catch (FileNotFoundException e) {
+                            logger.log(e.getMessage(), e);
+                        }
+                        return null;
+                    })
+                    .map(in -> {
+                        try {
+                            return new ObjectInputStream(in);
+                        } catch (IOException e) {
+                            logger.log(e.getMessage(), e);
+                        }
+                        return null;
+                    })
+                    .map(objectInputStream -> {
+                        try {
+                            return objectInputStream.readObject();
+                        } catch (IOException | ClassNotFoundException e) {
+                            logger.log(e.getMessage(), e);
+                        }
+                        return null;
+                    })
+                    .filter(clazz::isInstance)
+                    .map(clazz::cast)
+                    .sorted(Comparator.comparing(DevlabsEntity::getId))
+                    .collect(Collectors.toList());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public void clear() throws IOException {
+        Files.walk(Paths.get(STORAGE))
+                .filter(Files::isRegularFile)
+                .map(Path::toFile)
+                .forEach(File::delete);
     }
 }

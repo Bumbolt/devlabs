@@ -36,9 +36,7 @@ public class TopicResource {
     @GET
     @Path("{id}")
     public Topic getTopic(@PathParam("id") String id){
-        return new TopicImpl(
-                "title", "description", new SessionImpl("1")
-        );
+        return TopicImpl.create();
     }
 
     @POST

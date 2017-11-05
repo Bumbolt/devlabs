@@ -1,4 +1,4 @@
-package com.realdolmen.repository.storage.impl;
+package com.realdolmen.repository;
 
 import com.realdolmen.model.DevlabsEntity;
 import com.realdolmen.repository.storage.api.StorageResult;
@@ -10,8 +10,12 @@ public class TestEntity implements DevlabsEntity {
     private UUID id;
     private String testField;
 
-    TestEntity() {
+    private TestEntity() {
         id = UUID.randomUUID();
+    }
+
+    public static TestEntity create() {
+        return new TestEntity();
     }
 
     @Override
