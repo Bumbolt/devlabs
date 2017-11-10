@@ -2,9 +2,11 @@ package com.realdolmen.model;
 
 import com.realdolmen.repository.storage.api.StorageResult;
 
+import java.util.Collections;
 import java.util.Set;
 
 public class TopicImpl extends DevlabsEntityImpl implements Topic {
+
     private String title, description;
     private Set<DevLabsTag> tags;
     private Set<DevLabsUser> subscribers;
@@ -12,8 +14,18 @@ public class TopicImpl extends DevlabsEntityImpl implements Topic {
 
     private TopicImpl() {}
 
-    public static Topic create() {
+    public static Topic of() {
         return new TopicImpl();
+    }
+
+    public static TopicImpl of(Topic topic) {
+        TopicImpl result = new TopicImpl();
+        result.title = topic.getTitle();
+        result.description = topic.getDescription();
+        result.tags = topic.getTags();
+        result.subscribers = result.getSubscribers();
+        result.session = result.getSession();
+        return result;
     }
 
     @Override
@@ -38,12 +50,12 @@ public class TopicImpl extends DevlabsEntityImpl implements Topic {
 
     @Override
     public Set<DevLabsTag> getTags() {
-        return tags;
+        return Collections.unmodifiableSet(tags);
     }
 
     @Override
     public Set<DevLabsUser> getSubscribers() {
-        return subscribers;
+        return Collections.unmodifiableSet(subscribers);
     }
 
     @Override

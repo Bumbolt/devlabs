@@ -42,9 +42,9 @@ public class TopicsRepositoryTest {
 
     private TopicRepository createRepositoryWithStoredEntities() {
         storage = FileStorage.create("./teststorage/");
-        storage.save(TopicImpl.create());
-        storage.save(TopicImpl.create());
-        storage.save(TopicImpl.create());
+        storage.save(TopicImpl.of());
+        storage.save(TopicImpl.of());
+        storage.save(TopicImpl.of());
         return TopicRepository.create(storage);
     }
 }

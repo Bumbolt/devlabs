@@ -34,14 +34,23 @@ public class TopicResource {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public void createTopic(TopicImpl topic) {
-        logger.log("Create topic " + topic.getTitle());
+    public Response createTopic(TopicImpl topic) {
+        try {
+            TopicImpl toSave = TopicImpl.of(topic);
+            StorageResult result = toSave.save();
+            if (result == StorageResult.OK) {
+                return Response.accepted().build();
+            }
+        } catch (RuntimeException e) {
+            logger.log("ERROR", e);
+        }
+        return Response.serverError().build();
     }
 
     @GET
     @Path("{id}")
     public Topic getTopic(@PathParam("id") String id) {
-        return TopicImpl.create();
+        return TopicImpl.of();
     }
 
     @POST
